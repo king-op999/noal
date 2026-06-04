@@ -406,10 +406,24 @@ footer{text-align:center;padding:20px;border-top:1px solid var(--brd);position:r
 // ========== STARTUP ==========
 (async function () {
     initHardcodedKeys();
-    if (!loadFromDisk()) { if (customAPIs.length === 0) initCustomAPIs(); }
-    if (!keyStorage[MASTER_API_KEY]) keyStorage[MASTER_API_KEY] = createMasterKey();
+    if (!loadFromDisk()) { 
+        if (customAPIs.length === 0) initCustomAPIs(); 
+    }
+    if (!keyStorage[MASTER_API_KEY]) {
+        keyStorage[MASTER_API_KEY] = createMasterKey();
+    }
     scheduleSave();
-    console.log('✅ BRONX OSINT V6.0 READY! [Render Disk Storage]');
+    
+    const PORT = process.env.PORT || 3000;
+    app.listen(PORT, () => {
+        console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━');
+        console.log('✅ BRONX OSINT V6.0 ONLINE!');
+        console.log(`🚀 PORT: ${PORT}`);
+        console.log(`💾 Storage: Render Disk`);
+        console.log(`🔒 Hardcoded: ${Object.values(keyStorage).filter(k => k._hardcoded).length}`);
+        console.log(`📦 Generated: ${Object.values(keyStorage).filter(k => !k._hardcoded && !k.hidden).length}`);
+        console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━');
+    });
 })();
 
 module.exports = app;
