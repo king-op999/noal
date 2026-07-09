@@ -6,7 +6,7 @@ const path = require('path');
 const app = express();
 
 const REAL_API_BASE = 'https://ft-osint-api.duckdns.org/api';
-const REAL_API_KEYS = ['bronx-bot-9999', 'bronx-bot-9999', 'bronx', 'bronx'];
+const REAL_API_KEYS = ['bronx-bot-9999', 'bronx-bot-9999', 'bronx-ultra-king-ft-bro-op', 'bronx-ultra-king-ft-bro-op'];
 let currentKeyIndex = 0;
 function getNextKey() { const key = REAL_API_KEYS[currentKeyIndex]; currentKeyIndex = (currentKeyIndex + 1) % REAL_API_KEYS.length; return key; }
 
